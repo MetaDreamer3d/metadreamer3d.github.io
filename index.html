@@ -187,6 +187,20 @@
 </section>
 
 
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Gif Section. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/videos/first.gif" alt="Gif Description">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -195,14 +209,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified abstract-background">
           <p>
-			Generative models for 3D object synthesis have seen significant advancements with the incorporation of prior knowledge distilled from 2D diffusion models. 
-			Nevertheless, challenges persist in the form of multi-view geometric inconsistencies and slow generation speeds within the existing 3D synthesis frameworks. 
-			These issues can be attributed to the lack of adequate geometric prior knowledge and the coupled nature of geometry and texture optimization. 
-			In response, we introduce MetaDreamer, a two-stage optimization approach that decouples 3D geometric structure refinement and texture enhancement. 
-			The first stage of MetaDreamer focuses on optimizing the geometric representation, ensuring consistent and accurate 3D shapes. In the second stage, we concentrate on refining the texture to enhance visual fidelity.
-			By decoupling these processes, our method enables efficient 3D object generation. Remarkably, our approach can produce high-quality 3D objects within just \textbf{20 minutes}. 
-			Furthermore, MetaDreamer offers fine-grained control over the 3D generation process by supporting reference image-based control, enhancing the controllability and usability of the 3D synthesis pipeline. 
-			This decoupled two-stage optimization approach, implemented in MetaDreamer, presents a promising solution to address the challenges in 3D object synthesis, making it more efficient, accurate, and controllable.
+            Generative models for 3D object synthesis have seen significant advancements with the incorporation of prior knowledge distilled from 2D diffusion models. Nevertheless, existing 3D synthesis methods still face some challenges, such as multi-view geometric inconsistency and low generation efficiency. This can be attributed to two factors: firstly, the lack of abundant geometric prior knowledge in optimization, and secondly, the entanglement between geometry and texture in conventional 3D generation methods. In response, we introduce MetaDreammer, a two-stage optimization approach that leverages rich 2D(texture) and 3D(geometry) prior knowledge. In the first stage, we focus on optimizing the geometric representation to ensure the geometric integrity and multi-view consistency of the 3D objects. In the second stage, we concentrate on fine-tuning the geometry and optimizing the texture to achieve a more refined 3D object. Through leveraging 2D and 3D prior knowledge in two stages, respectively, we effectively alleviate the entanglement between geometry and texture, making the optimization objectives more explicit at each stage, thus significantly saving the optimization time. MetaDreamer can generate high-quality 3D objects based on textual prompts within 20 minutes, and to the best of our knowledge, it is the most efficient text-to-3D generation method. Extensive qualitative and quantitative comparative experiments demonstrate that our method outperforms the state-of-the-art level in both efficiency and the quality of generated 3D content.
           </p>
         </div>
       </div>
@@ -223,7 +230,7 @@
     <img src="./static/images/pipeline.png" alt="Framework Image">
 
     <!-- Overview of MetaDreamer -->
-    <p><strong>Overview of MetaDreamer:</strong>MetaDreamer can generate a 3D object within 20 minutes Given a text prompt. MetaDreamer consists of two stages: In the first stage, we utilize 3D prior knowledge (a image-based diffusion model fine-tuned in Objaverse Dataset and optimize NerF to obtain the coarse model. Then we fine-tune it using 2D priorpretrained text-to-image high-resolution latent diffusion model</p>
+    <p><strong>Overview architecture.</strong> MetaDreamer is a two-stage coarse-to-fine optimization pipeline designed to generate 3D content from arbitrary input text. In the first stage, we optimize a rough 3D model Instant-NGP guiding by a reference image and view-dependent diffusion prior model simultaneously. In the second stage, we continue to refine Instant-NGP using a text-to-image 2D diffusion prior model. The entire process takes 20 minutes. The entire optimization process only takes 20 minutes.</p>
   </div>
 </section>
 
@@ -327,17 +334,19 @@
     <table style="margin: 0 auto; border-collapse: collapse; width: 100%;">
       <tr>
         <th style="border: 1px solid black; text-align: center;">Method</th>
-        <th style="border: 1px solid black; text-align: center;">LatenNerf</th>
+        <th style="border: 1px solid black; text-align: center;">LatenNeRF</th>
         <th style="border: 1px solid black; text-align: center;">DremFusion</th>
         <th style="border: 1px solid black; text-align: center;">Magic3D</th>
+        <th style="border: 1px solid black; text-align: center;">SJC</th>
         <th style="border: 1px solid black; text-align: center;">ProlificDreamer</th>
         <th style="border: 1px solid black; text-align: center;">MetaDreamer</th>
       </tr>
       <tr>
         <td style="border: 1px solid black; text-align: center;">Time(min)</td>
-        <td style="border: 1px solid black; text-align: center;">80</td>
-        <td style="border: 1px solid black; text-align: center;">52</td>
+        <td style="border: 1px solid black; text-align: center;">100</td>
+        <td style="border: 1px solid black; text-align: center;">60</td>
         <td style="border: 1px solid black; text-align: center;">125</td>
+        <td style="border: 1px solid black; text-align: center;">65</td>
         <td style="border: 1px solid black; text-align: center;">420</td>
         <td style="border: 1px solid black; text-align: center;">20</td>
       </tr>
@@ -346,6 +355,7 @@
         <td style="border: 1px solid black; text-align: center;">20000</td>
         <td style="border: 1px solid black; text-align: center;">10000</td>
         <td style="border: 1px solid black; text-align: center;">20000</td>
+        <td style="border: 1px solid black; text-align: center;">10000</td>
         <td style="border: 1px solid black; text-align: center;">70000</td>
         <td style="border: 1px solid black; text-align: center;">1300</td>
       </tr>
@@ -357,13 +367,61 @@
       <strong>Table:</strong>Comparison of training times between MetaDreamer and various text-based 3D methods. All experiments were conducted on a single NVIDIA A100 GPU. All experimental settings (number of iterations, random seeds, etc.) followed the official default settings of threestudio.</p>
     <h3 class="subtitle has-text-centered"></h3>
     <h3 class="subtitle has-text-centered"></h3>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_cherry_red_vintage_lipstick_tube.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A cherry red vintage lipstick tube</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_cactus_with_pink_flowers.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A cactus with pink flowers</h3>
+	<br>
     
 	<video controls autoplay muted loop>
       <source src="./static/videos/compare/A_bent_steel_crowbar.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A bent steel crowbar</h3>
 	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_long_woolen_scarf,_striped_red_and_black.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A long woolen scarf, striped red and black</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/a_picture_of_a_flamingo_scratching_its_neck.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">a picture of a flamingo scratching its neck</h3>
+	<br>
 
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_red_fire_hydrant_with_an_open_sign_on_it.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A red fire hydrant with an open sign on it</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_frog_with_a_purple_toothbrush_in_his_hand.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A frog with a purple toothbrush in his hand</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_shiny_red_apple.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A shiny red apple</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_crumpled_silver_aluminum_soda_can.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A crumpled silver aluminum soda can</h3>
+	<br>
+	
     <video controls autoplay muted loop>
       <source src="./static/videos/compare/A_blue_motorbike_has_a__Minnesota__license_plate.mp4" type="video/mp4">
     </video>
@@ -380,12 +438,6 @@
       <source src="./static/videos/compare/A_brown_and_white_horse_is_wearing_a_blue_muzzle.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A brown and white horse is wearing a blue muzzle</h3>
-	<br>
-
-    <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_cactus_with_pink_flowers.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A cactus with pink flowers</h3>
 	<br>
 
     <video controls autoplay muted loop>
@@ -407,12 +459,6 @@
 	<br>
 
     <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_cherry_red_vintage_lipstick_tube.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A cherry red vintage lipstick tube</h3>
-	<br>
-
-    <video controls autoplay muted loop>
       <source src="./static/videos/compare/A_cobweb-covered_old_wooden_chest.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A cobweb-covered old wooden chest</h3>
@@ -425,21 +471,9 @@
 	<br>
 
     <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_crumpled_silver_aluminum_soda_can.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A crumpled silver aluminum soda can</h3>
-	<br>
-
-    <video controls autoplay muted loop>
       <source src="./static/videos/compare/A_donut_is_covered_with_glaze.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A donut is covered with glaze</h3>
-	<br>
-
-    <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_frog_with_a_purple_toothbrush_in_his_hand.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A frog with a purple toothbrush in his hand</h3>
 	<br>
 
     <video controls autoplay muted loop>
@@ -466,11 +500,6 @@
 	<h3 class="subtitle has-text-centered">A green enameled watering can</h3>
 	<br>
 
-    <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_long_woolen_scarf,_striped_red_and_black.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A long woolen scarf, striped red and black</h3>
-	<br>
 
     <video controls autoplay muted loop>
       <source src="./static/videos/compare/A_pair_of_shiny_black_patent_leather_shoes.mp4" type="video/mp4">
@@ -482,12 +511,6 @@
       <source src="./static/videos/compare/A_partly_broken_shell_of_a_tortoise.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A partly broken shell of a tortoise</h3>
-	<br>
-
-    <video controls autoplay muted loop>
-      <source src="./static/videos/compare/a_picture_of_a_flamingo_scratching_its_neck.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">a picture of a flamingo scratching its neck</h3>
 	<br>
 
     <video controls autoplay muted loop>
@@ -509,12 +532,6 @@
 	<br>
 
     <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_red_fire_hydrant_with_an_open_sign_on_it.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A red fire hydrant with an open sign on it</h3>
-	<br>
-
-    <video controls autoplay muted loop>
       <source src="./static/videos/compare/A_ripe_watermelon_sliced_in_half.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A ripe watermelon sliced in half</h3>
@@ -530,12 +547,6 @@
       <source src="./static/videos/compare/A_shimmering_emerald_pendant_necklace.mp4" type="video/mp4">
     </video>
 	<h3 class="subtitle has-text-centered">A shimmering emerald pendant necklace</h3>
-	<br>
-
-    <video controls autoplay muted loop>
-      <source src="./static/videos/compare/A_shiny_red_apple.mp4" type="video/mp4">
-    </video>
-	<h3 class="subtitle has-text-centered">A shiny red apple</h3>
 	<br>
 
     <video controls autoplay muted loop>
@@ -765,11 +776,7 @@
 	
 	
 	
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	(a)MetaDreamer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	(b)Dreamfusion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	(c)Magic3D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	(d)ProlificDreamer</p>
+
   </div>
 </section>
     <!--/ 
