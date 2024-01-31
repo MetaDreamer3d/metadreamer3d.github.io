@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .abstract-background {
+    background-color: #f2f2f2; /* 灰色背景颜色 */
+    padding: 10px; /* 可选，添加一些内边距以增加可读性 */
+  }
+  .container.is-max-desktop {
+    max-width: 960px; /* 设置最大宽度，根据需要进行调整 */
+    margin: 0 auto; /* 居中显示 */
+    margin-bottom: 20px; /* 增加底部边距 */
+  }
+</style>
+
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MetaDreamer: Efficient Text-to-3D Creation With Disentangling Geometry and Texture</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  
+<!--  
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+-->  
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MetaDreamer: Efficient Text-to-3D Creation With Disentangling Geometry and Texture</h1>
+		  <p><b>Anonymous Submission</b></p>
+		  <!--
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Lincong Feng</a><sup>1</sup>,<sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://utkarshsinha.com">Muyu Wang</a><sup>1</sup>,<sup>3</sup></span>
+            <span class="author-block">
+              <a href="https://jonbarron.info">Maoyu Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://sofienbouaziz.com">Xiaoli Liu</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MetaApp,</span>
+            <span class="author-block"><sup>2</sup>Beijing University of Technology</span>
+			<span class="author-block"><sup>3</sup>Beijing Institute Of Technology</span>
+          </div>
+		  -->
+
+<!--
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/fenglincong/MetaDreamer-test"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+          </div>
+		  
+-->		  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Compare with SweetDreamer</h2>
+    <p>According to the SweetDreamer paper: Firstly, they employed four V100 GPUs, conducting iterative training for approximately 10,000 iterations (around 100 minutes). Additionally, they utilized the currently most advanced Deepfloyd IF. The combination of extended training time and advanced prior guidance contributed to SweetDreamer achieving such stunning results. In comparison, we used only one A100 GPU, training for 1300 iterations (20 minutes). According to experimental results, we were able to achieve results comparable to SweetDreamer.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)MetaDreamer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)SweetDreamer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/SweetDreamer/lion.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/SweetDreamer/rainfish.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/SweetDreamer/A_delicious_croissant.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/SweetDreamer/pig.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Ablation Study of Geometry regularization</h2>
+    <p> In the second stage, the 2D diffusion prior can only provide RGB constraint but lack 3D prior. The Geometry regularization is effective in avoiding noise diffusion, thereby preventing geometric collapse.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)w/Reg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)wo/Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/opa/flamingo.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/opa/umbrella.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/opa/car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/opa/Scarf.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Ablation Study of lora</h2>
+    <p>From the experimental results, it is evident that LoRA plays a crucial role in generating higher-quality textures. Despite the strong generalization capability of the pre-trained diffusion model, there is still room for optimization for specific tasks, such as a particular 3D generation task. LoRA can further refine this optimization of the diffusion model, representing a form of 2D prior knowledge.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)w/lora &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)wo/lora&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/Delorean_car.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/cactus.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/TRUMP.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/astronaut.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    
+    
+      <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/A_ripe_watermelon_sliced_in_half3_rgba.png.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/A_sleek_stainless_steel_teapot3_rgba.png.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/hydrant.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/chery.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Compare With Zero123</h2>
+
+    <p></p>Zero123 requires one A100 to run 500 iters, taking 7 minutes, while MetaDreamer has a total runtime of 20 minutes. Overall, MetaDreamer excels in both geometry and texture.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)Zero123 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)MetaDreamer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/chery.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/castle.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/cactus.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/flamingo.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/umbrella.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe1.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe2.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/white_car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/truck.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/blue_moto.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/bear.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <p></p>
+  </div>
+</section>
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Gif Section. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="./static/videos/first.gif" alt="Gif Description">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified abstract-background">
+          <p>
+            Generative models for 3D object synthesis have seen significant advancements with the incorporation of prior knowledge distilled from 2D diffusion models. Nevertheless, existing 3D synthesis methods still face some challenges, such as multi-view geometric inconsistency and low generation efficiency. This can be attributed to two factors: firstly, the lack of abundant geometric prior knowledge in optimization, and secondly, the entanglement between geometry and texture in conventional 3D generation methods. In response, we introduce MetaDreammer, a two-stage optimization approach that leverages rich 2D(texture) and 3D(geometry) prior knowledge. In the first stage, we focus on optimizing the geometric representation to ensure the geometric integrity and multi-view consistency of the 3D objects. In the second stage, we concentrate on fine-tuning the geometry and optimizing the texture to achieve a more refined 3D object. Through leveraging 2D and 3D prior knowledge in two stages, respectively, we effectively alleviate the entanglement between geometry and texture, making the optimization objectives more explicit at each stage, thus significantly saving the optimization time. MetaDreamer can generate high-quality 3D objects based on textual prompts within 20 minutes, and to the best of our knowledge, it is the most efficient text-to-3D generation method. Extensive qualitative and quantitative comparative experiments demonstrate that our method outperforms the state-of-the-art level in both efficiency and the quality of generated 3D content.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Framework. -->
+    <h2 class="title is-3">Framework</h2>
+
+    <!-- Insert Image -->
+    <img src="./static/images/pipeline.jpg" alt="Framework Image">
+
+    <!-- Overview of MetaDreamer -->
+    <p><strong>Overview architecture.</strong> MetaDreamer is a two-stage coarse-to-fine optimization pipeline designed to generate 3D content from arbitrary input text. In the first stage, we optimize a rough 3D model Instant-NGP guiding by a reference image and view-dependent diffusion prior model simultaneously. In the second stage, we continue to refine Instant-NGP using a text-to-image 2D diffusion prior model. The entire process takes 20 minutes. The entire optimization process only takes 20 minutes.</p>
+  </div>
+</section>
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+  <h2 class="title is-3">Demo</h2>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/it30000.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+		An orange motorcycle is shown at close range
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/metadreamer/car.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        a small white car
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/metadreamer/broccoli.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A broccoli
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/metadreamer/rotted.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A rotted car
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/metadreamer/sandwish.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A sandwich with meat,_vegetables, peppers, and lettuce
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/tie.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A tie
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/it30000.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A sandwich with meat,_vegetables, peppers, and lettuce
+      </h2>
+    </div>
+	
+	
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/metadreamer/black_car.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A sandwich with meat,_vegetables, peppers, and lettuce
+      </h2>
+    </div>
+	</div>
+  </div>
+</section> -->
+
+
+
+
+
+
+<section class="section" style="width: 100%;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparison With Sota</h2>
+
+
+    <p></p>
+    <p></p>
+    <p></p>
+    
+    <table style="margin: 0 auto; border-collapse: collapse; width: 100%;">
+      <tr>
+        <th style="border: 1px solid black; text-align: center;">Method</th>
+        <th style="border: 1px solid black; text-align: center;">LatenNeRF</th>
+        <th style="border: 1px solid black; text-align: center;">DremFusion</th>
+        <th style="border: 1px solid black; text-align: center;">Magic3D</th>
+        <th style="border: 1px solid black; text-align: center;">SJC</th>
+        <th style="border: 1px solid black; text-align: center;">ProlificDreamer</th>
+        <th style="border: 1px solid black; text-align: center;">MetaDreamer</th>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; text-align: center;">Time(min)</td>
+        <td style="border: 1px solid black; text-align: center;">100</td>
+        <td style="border: 1px solid black; text-align: center;">60</td>
+        <td style="border: 1px solid black; text-align: center;">125</td>
+        <td style="border: 1px solid black; text-align: center;">65</td>
+        <td style="border: 1px solid black; text-align: center;">420</td>
+        <td style="border: 1px solid black; text-align: center;">20</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid black; text-align: center;">iter</td>
+        <td style="border: 1px solid black; text-align: center;">20000</td>
+        <td style="border: 1px solid black; text-align: center;">10000</td>
+        <td style="border: 1px solid black; text-align: center;">20000</td>
+        <td style="border: 1px solid black; text-align: center;">10000</td>
+        <td style="border: 1px solid black; text-align: center;">70000</td>
+        <td style="border: 1px solid black; text-align: center;">1300</td>
+      </tr>
+    </table>
+    <p></p>
+    <p></p>
+
+    <p>
+      <strong>Table:</strong>Comparison of training times between MetaDreamer and various text-based 3D methods. All experiments were conducted on a single NVIDIA A100 GPU. All experimental settings (number of iterations, random seeds, etc.) followed the official default settings of threestudio.</p>
+    <h3 class="subtitle has-text-centered"></h3>
+    <h3 class="subtitle has-text-centered"></h3>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_rainbow-colored_umbrella.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A rainbow-colored umbrella</h3>
+	<br>
+    
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_futuristic,_sleek_electric_car_model.mp4" type="video/mp4">
+    </video>
+  <h3 class="subtitle has-text-centered">A futuristic, sleek electric car model</h3>
+  <br>
+
+  <video controls autoplay muted loop>
+    <source src="./static/videos/compare/a_picture_of_a_flamingo_scratching_its_neck.mp4" type="video/mp4">
+  </video>
+<h3 class="subtitle has-text-centered">a flamingo scratching its neck</h3>
+<br>
+
+  <video controls autoplay muted loop>
+    <source src="./static/videos/compare/A_pair_of_shiny_black_patent_leather_shoes.mp4" type="video/mp4">
+  </video>
+<h3 class="subtitle has-text-centered">A pair of shiny black leather shoes</h3>
+<br>
+
+<video controls autoplay muted loop>
+  <source src="./static/videos/compare/A_green_enameled_watering_can.mp4" type="video/mp4">
+</video>
+<h3 class="subtitle has-text-centered">A green enameled watering can</h3>
+<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_cherry_red_vintage_lipstick_tube.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A cherry red vintage lipstick tube</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_cactus_with_pink_flowers.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A cactus with pink flowers</h3>
+	<br>
+    
+	<video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_bent_steel_crowbar.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A bent steel crowbar</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_long_woolen_scarf,_striped_red_and_black.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A long woolen scarf, striped red and black</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_red_fire_hydrant_with_an_open_sign_on_it.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A red fire hydrant with an open sign on it</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_frog_with_a_purple_toothbrush_in_his_hand.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A frog with a purple toothbrush in his hand</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_shiny_red_apple.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A shiny red apple</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_crumpled_silver_aluminum_soda_can.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A crumpled silver aluminum soda can</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_blue_motorbike_has_a__Minnesota__license_plate.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A blue motorbike has a Minnesota license plate</h3>
+	<br>
+	
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_bright_red_kite_with_a_frayed_tail.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A bright red kite with a frayed tail</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_brown_and_white_horse_is_wearing_a_blue_muzzle.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A brown and white horse is wearing a blue muzzle</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_castle-shaped_sandcastle.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A castle-shaped sandcastle</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_ceramic_teapot_with_floral_patterns.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A ceramic teapot with floral patterns</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_chameleon_perched_on_a_tree_branch.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A chameleon perched on a tree branch</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_cobweb-covered_old_wooden_chest.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A cobweb-covered old wooden chest</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_crisp_paper_airplane.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A crisp paper airplane</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_donut_is_covered_with_glaze.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A donut is covered with glaze</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_gleaming_silver_saxophone.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A gleaming silver saxophone</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_gold_tie_is_tied_under_a_brown_dress_shirt_with_stripes.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A gold tie is tied under a brown dress shirt with stripes</h3>
+	<br>
+
+
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_partly_broken_shell_of_a_tortoise.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A partly broken shell of a tortoise</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_piece_of_gray_luggage_with_travel_stickers.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A piece of gray luggage with travel stickers</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_plush_velvet_armchair.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A plush velvet armchair</h3>
+	<br>
+
+
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_ripe_watermelon_sliced_in_half.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A ripe watermelon sliced in half</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_rustic_wrought-iron_candle_holder.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A rustic wrought-iron candle holder</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_shimmering_emerald_pendant_necklace.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A shimmering emerald pendant necklace</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_sleek,_black_top_hat.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A sleek, black top hat</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_sleek_stainless_steel_teapot.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A sleek stainless steel teapot</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_small_porcelain_white_rabbit_figurine.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A small porcelain white rabbit figurine</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_sparkling_crystal_chandelier.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A sparkling crystal chandelier</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_sparkling_diamond_tiara.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A sparkling diamond tiara</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_steaming_mug_of_hot_chocolate_with_whipped_cream.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A steaming mug of hot chocolate with whipped cream</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_sturdy_mahogany_walking_cane.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A sturdy mahogany walking cane</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_vintage_porcelain_doll_with_a_frilly_dress.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">A vintage porcelain doll with a frilly dress</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/An_antique_glass_perfume_bottle.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">An antique glass perfume bottle</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/An_antique_wooden_rocking_horse.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">An antique wooden rocking horse</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/An_intricate_ceramic_vase_with_peonies_painted_on_it.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">An intricate ceramic vase with peonies painted on it</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/An_intricately-carved_wooden_chess_set.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">An intricately-carved wooden chess set</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/An_orange_motorcycle_is_shown_at_close_range.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">An orange motorcycle is shown at close range</h3>
+	<br>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/Crisp,_folded_origami_paper.mp4" type="video/mp4">
+    </video>
+	<h3 class="subtitle has-text-centered">Crisp, folded origami paper</h3>
+</section>
+
+<section class="section" style="width: 100%;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Comparison of Results Under the Same Training Time</h2>
+    <p style="margin-bottom: 20px;">
+      We compared the generation results of various methods under the same time (20 minutes). 
+      It can be observed that our method can generate high-quality 3D objects, while other methods can only produce a blurry outline.
+    </p>
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_rainbow-colored_umbrella.mp4" type="video/mp4">
+    </video>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_futuristic,_sleek_electric_car_model.mp4" type="video/mp4">
+    </video>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/a_picture_of_a_flamingo_scratching_its_neck.mp4" type="video/mp4">
+    </video>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_pair_of_shiny_black_patent_leather_shoes.mp4" type="video/mp4">
+    </video>
+
+    <video controls autoplay muted loop>
+      <source src="./static/videos/compare/A_green_enameled_watering_can.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+	
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Two-stage optimization</h2>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)Geometry Stage &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)Texture Stage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe1.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe2.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/white_car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/truck.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/blue_moto.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/bear.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <p>We present the optimization results of two stages (360° rendering and normals). The left two columns represent the results of the first stage, while the right two columns depict the results after fine-tuning in the second stage</p>
+  </div>
+</section>
+	
+<p></p>
+<p></p>
+<p></p>
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+  <h2 class="title is-3">Appearance control</h2>
+  <p></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	(a)W/O Control Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	(b)Control Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	(c)W Control Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/ref/compress_broccoli.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+		A broccoli
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/ref/compress_donut.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A_donut_is_covered_with_glaze
+      </h2>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/ref/compress_pine_tree.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        A Halloween-themed tree
+      </h2>
+    </div>
+	</div>
+  </div>
+</section>
+
+    <!-- <video controls>
+      <source src="./static/videos/compare/donut_rgb.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/donut_narmal.mp4" type="video/mp4">
+    </video>
+	
+    <video controls>
+      <source src="./static/videos/compare/fire_rgb.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/fire_narmal.mp4" type="video/mp4">
+    </video>
+	
+    <video controls>
+      <source src="./static/videos/compare/flamingo_rgb.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/flamingo_narmal.mp4" type="video/mp4">
+    </video>
+	
+    <video controls>
+      <source src="./static/videos/compare/frog_rgb.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/frog_narmal.mp4" type="video/mp4">
+    </video>
+	
+    <video controls>
+      <source src="./static/videos/compare/orange_moto_rgb.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/orange_moto_narmal.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="./static/videos/compare/horse_rgb.mp4" type="video/mp4">
+    </video>	
+    <video controls>
+      <source src="./static/videos/compare/horse_narmal.mp4" type="video/mp4">
+    </video>	
+    <video controls>
+      <source src="./static/videos/compare/controller_rgb.mp4" type="video/mp4">
+    </video>	
+    <video controls>
+      <source src="./static/videos/compare/controller_narmal.mp4" type="video/mp4">
+    </video>	-->
+	
+	
+	
+
+  </div>
+</section>
+    <!--/ 
+111111111111111111111111111
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section>
+Abstract. -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
