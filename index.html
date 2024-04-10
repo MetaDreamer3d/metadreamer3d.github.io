@@ -103,7 +103,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">MetaDreamer: Efficient Text-to-3D Creation With Disentangling Geometry and Texture</h1>
-		  <p><b>Anonymous Submission</b></p>
+		  <p><b></b></p>
 		  <!--
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -189,257 +189,7 @@
 
 
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Compare with SweetDreamer</h2>
-    <p>According to the SweetDreamer paper: Firstly, they employed four V100 GPUs, conducting iterative training for approximately 10,000 iterations (around 100 minutes). Additionally, they utilized the currently most advanced Deepfloyd IF. The combination of extended training time and advanced prior guidance contributed to SweetDreamer achieving such stunning results. In comparison, we used only one A100 GPU, training for 1300 iterations (20 minutes). According to experimental results, we were able to achieve results comparable to SweetDreamer.</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (a)MetaDreamer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (b)SweetDreamer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/SweetDreamer/lion.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/SweetDreamer/rainfish.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/SweetDreamer/A_delicious_croissant.mp4"
-                type="video/mp4">
-      </video>
-    </div>
 
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/SweetDreamer/pig.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Ablation Study of Geometry regularization</h2>
-    <p> In the second stage, the 2D diffusion prior can only provide RGB constraint but lack 3D prior. The Geometry regularization is effective in avoiding noise diffusion, thereby preventing geometric collapse.</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (a)w/Reg &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (b)wo/Reg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/opa/flamingo.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/opa/umbrella.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/opa/car.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/opa/Scarf.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Ablation Study of lora</h2>
-    <p>From the experimental results, it is evident that LoRA plays a crucial role in generating higher-quality textures. Despite the strong generalization capability of the pre-trained diffusion model, there is still room for optimization for specific tasks, such as a particular 3D generation task. LoRA can further refine this optimization of the diffusion model, representing a form of 2D prior knowledge.</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (a)w/lora &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (b)wo/lora&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-    
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/lora/Delorean_car.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/lora/cactus.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/lora/TRUMP.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/lora/astronaut.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-    
-    
-      <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/lora/A_ripe_watermelon_sliced_in_half3_rgba.png.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/lora/A_sleek_stainless_steel_teapot3_rgba.png.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/lora/car.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/lora/hydrant.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/rebuttal/lora/chery.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Compare With Zero123</h2>
-
-    <p></p>Zero123 requires one A100 to run 500 iters, taking 7 minutes, while MetaDreamer has a total runtime of 20 minutes. Overall, MetaDreamer excels in both geometry and texture.</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (a)Zero123 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      (b)MetaDreamer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-
-
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/zero123/chery.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/zero123/castle.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/zero123/cactus.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/zero123/flamingo.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/rebuttal/zero123/umbrella.mp4"
-                  type="video/mp4">
-        </video>
-      </div>
-
-
-
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/coupe1.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/coupe2.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/white_car.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/truck.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/blue_moto.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/two_stage/bear.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    <p></p>
-  </div>
-</section>
 
 
 
@@ -466,7 +216,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified abstract-background">
           <p>
-            Generative models for 3D object synthesis have seen significant advancements with the incorporation of prior knowledge distilled from 2D diffusion models. Nevertheless, existing 3D synthesis methods still face some challenges, such as multi-view geometric inconsistency and low generation efficiency. This can be attributed to two factors: firstly, the lack of abundant geometric prior knowledge in optimization, and secondly, the entanglement between geometry and texture in conventional 3D generation methods. In response, we introduce MetaDreammer, a two-stage optimization approach that leverages rich 2D(texture) and 3D(geometry) prior knowledge. In the first stage, we focus on optimizing the geometric representation to ensure the geometric integrity and multi-view consistency of the 3D objects. In the second stage, we concentrate on fine-tuning the geometry and optimizing the texture to achieve a more refined 3D object. Through leveraging 2D and 3D prior knowledge in two stages, respectively, we effectively alleviate the entanglement between geometry and texture, making the optimization objectives more explicit at each stage, thus significantly saving the optimization time. MetaDreamer can generate high-quality 3D objects based on textual prompts within 20 minutes, and to the best of our knowledge, it is the most efficient text-to-3D generation method. Extensive qualitative and quantitative comparative experiments demonstrate that our method outperforms the state-of-the-art level in both efficiency and the quality of generated 3D content.
+            Generative models for 3D object synthesis have seen significant advancements with the incorporation of prior knowledge distilled from 2D diffusion models. Nevertheless, existing 3D synthesis methods still face some challenges, such as multi-view geometric inconsistency and low generation efficiency. This can be attributed to two factors: firstly, the lack of abundant geometric prior knowledge in optimization, and secondly, the entanglement between geometry and texture in conventional 3D generation methods. In response, we introduce MetaDreammer, a two-stage optimization approach that leverages rich 2D(texture) and 3D(geometry) prior knowledge. In the first stage, we focus on optimizing the geometric representation to ensure the geometric integrity and multi-view consistency of the 3D objects. In the second stage, we concentrate on fine-tuning the geometry and optimizing the texture to achieve a more refined 3D object. Through leveraging 2D and 3D prior knowledge in two stages, respectively, we alleviate the entanglement between geometry and texture, thus significantly enhancing optimization efficiency. Furthermore, we introduce non-main object suppression(NMOS) to prevent geometric collapse and propose 3D Knowledge Mining(3DKM) to improve the quality of 3D generation. MetaDreamer can generate high-quality 3D objects based on textual prompts within 20 minutes, and to the best of our knowledge, it is the most efficient text-to-3D generation method. Extensive qualitative and quantitative comparative experiments demonstrate that our method outperforms the state-of-the-art level in both efficiency and the quality of generated 3D content.
           </p>
         </div>
       </div>
@@ -484,7 +234,7 @@
     <h2 class="title is-3">Framework</h2>
 
     <!-- Insert Image -->
-    <img src="./static/images/pipeline.jpg" alt="Framework Image">
+    <img src="./static/images/framework.png" alt="Framework Image">
 
     <!-- Overview of MetaDreamer -->
     <p><strong>Overview architecture.</strong> MetaDreamer is a two-stage coarse-to-fine optimization pipeline designed to generate 3D content from arbitrary input text. In the first stage, we optimize a rough 3D model Instant-NGP guiding by a reference image and view-dependent diffusion prior model simultaneously. In the second stage, we continue to refine Instant-NGP using a text-to-image 2D diffusion prior model. The entire process takes 20 minutes. The entire optimization process only takes 20 minutes.</p>
@@ -1015,6 +765,220 @@
 	</div>
   </div>
 </section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Ablation Study of NMOS</h2>
+    <p> In the second stage, the 2D diffusion prior can only provide RGB constraint but lack 3D prior. NMOS is effective in avoiding noise diffusion, thereby preventing geometric collapse.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)w/NMOS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)wo/NMOS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/opa/flamingo.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/opa/umbrella.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/opa/car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/opa/Scarf.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Ablation Study of 3DDM</h2>
+    <p>From the experimental results, it is evident that 3DKM plays a crucial role in generating higher-quality textures. Despite the strong generalization capability of the pre-trained diffusion model, there is still room for optimization for specific tasks, such as a particular 3D generation task. LoRA can further refine this optimization of the diffusion model, representing a form of 2D prior knowledge.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)w/lora &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)wo/lora&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/Delorean_car.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/cactus.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/TRUMP.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/lora/astronaut.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    
+    
+      <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/A_ripe_watermelon_sliced_in_half3_rgba.png.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/A_sleek_stainless_steel_teapot3_rgba.png.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/hydrant.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/rebuttal/lora/chery.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Compare With Zero123</h2>
+
+    <p></p>Zero123 requires one A100 to run 500 iters, taking 7 minutes, while MetaDreamer has a total runtime of 20 minutes. Overall, MetaDreamer excels in both geometry and texture.</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (a)Zero123 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      (b)MetaDreamer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/chery.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/castle.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/cactus.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/flamingo.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/rebuttal/zero123/umbrella.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+
+
+
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe1.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/coupe2.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/white_car.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/truck.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/blue_moto.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/two_stage/bear.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    <p></p>
+  </div>
+</section>
+
 
     <!-- <video controls>
       <source src="./static/videos/compare/donut_rgb.mp4" type="video/mp4">
